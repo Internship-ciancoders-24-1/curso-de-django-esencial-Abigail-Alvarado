@@ -18,3 +18,9 @@ Curso 3 Modelos:
 ![03extensionModelo](https://github.com/Internship-ciancoders-24-1/curso-de-django-esencial-Abigail-Alvarado/assets/74523252/b3e3d8b0-7938-4a9c-9dd4-871650b46c28)
 ![02ORM](https://github.com/Internship-ciancoders-24-1/curso-de-django-esencial-Abigail-Alvarado/assets/74523252/888a11e8-3e6d-463a-80f6-f97d7ac8d6dd)
 ![01Modelo](https://github.com/Internship-ciancoders-24-1/curso-de-django-esencial-Abigail-Alvarado/assets/74523252/33328caf-b065-42d6-941b-9fcab9530d87)
+
+curso 4: templates
+![Validacion](https://github.com/Internship-ciancoders-24-1/curso-de-django-esencial-Abigail-Alvarado/assets/74523252/f64832ef-2475-4def-a507-0c38a01e0efd)
+![validacion2](https://github.com/Internship-ciancoders-24-1/curso-de-django-esencial-Abigail-Alvarado/assets/74523252/e006e70c-5bba-411c-b4de-1575f8b73102)
+![Inicio](https://github.com/Internship-ciancoders-24-1/curso-de-django-esencial-Abigail-Alvarado/assets/74523252/6ebbe1ee-a27b-4652-9db0-7f21bf0e15fa)
+![feedzInicio](https://github.com/Internship-ciancoders-24-1/curso-de-django-esencial-Abigail-Alvarado/assets/74523252/e13d9c42-1de6-4818-b64c-b435e0cbeb92)
