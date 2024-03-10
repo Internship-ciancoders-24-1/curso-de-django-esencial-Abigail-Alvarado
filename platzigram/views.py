@@ -1,29 +1,34 @@
+"""Platzi gram views"""
+
+#Django
 from django.http import HttpResponse
+
+#Utilidades
 from datetime import datetime
-from django.http import JsonResponse
-import pdb
 import json
 
-def hello(request):
-    now = datetime.now().strftime('%b %dth, %y - %H:%M hrs')
-    return HttpResponse('oh, hi! Cuurent time is {now}'.format(now=now))
+def hello_word(request):
+    """Retorna un texto"""
+    now = datetime.now().strftime('%b %dth, %Y - %H:%M hrs')
+    return HttpResponse('Hola, la hora del servidor es {now}'. format(now=now))
 
-
-
-def hi(request):
-    numbers = request.GET.get('numbers', '')   
-    numbers_list = [int(num) for num in numbers.split(',')] 
-    sorted_numbers = sorted(numbers_list)  
-    
-    response_data = {
-        'sorted_numbers': sorted_numbers
+def numeros_ordenados(request):
+    """Retornando numeros ordenados en Json"""
+    aux = request.GET['numbers']
+    numbers = [int(i) for i in aux.split(',')]
+    sorted_ins = sorted(numbers)
+    data = {
+        'status': 'ok',
+        'numbers': sorted_ins,
+        'message':'Numeros ordenados correctamente'
     }
-    
-    return JsonResponse(response_data)
+    return HttpResponse(json.dumps(data, indent=4), content_type='application/json')
 
-def sayhi(request, name, age):
+def say_hi(request, name, age):
+    """Retorna nombre y edad"""
     if age < 12:
-        message = 'sorry {} you are allowed here'.format(name)
+        message = 'Sorry {}, no puedes estar aqui'.format(name)
     else:
-       message = 'Hello {} welcome'.format(name)
-    return HttpResponse(message)    
+        message = 'Hola, {}! Bienvenido a platzigram'.format(name)
+        
+    return HttpResponse(message)

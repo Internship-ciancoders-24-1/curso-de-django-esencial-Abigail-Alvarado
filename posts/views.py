@@ -1,35 +1,43 @@
-from django.http import HttpResponse
+#Django
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
+
+#modelos
+from posts.models import Post
+
+#forms
+from posts.forms import PostForm
+
+#Utilidades
 from datetime import datetime
 
-posts = [
-    {
-        'name':'Mont Blanc',
-        'user': 'Abigail ALvarado',
-        'timestamp':   datetime.now().strftime('%b %dth, %y - %H:%M hrs'),
-        'picture':'https://picsum.photos/200/200/?image=1036',
-    },
-        {
-        'name':'Via Lactea',
-        'user': 'Vander',
-        'timestamp':   datetime.now().strftime('%b %dth, %y - %H:%M hrs'),
-        'picture':'https://picsum.photos/200/200/?image=1036',
-    },
-        {
-        'name':'Nuevo Auditorio',
-        'user': 'Abigail ALvarado',
-        'timestamp':   datetime.now().strftime('%b %dth, %y - %H:%M hrs'),
-        'picture':'https://picsum.photos/200/200/?image=1036',
-    },
+# Create your views here.
 
-]
+@login_required
+def list_posts(request):
+    """Listado de posts"""
+    posts = Post.objects.all().order_by('-created')
+    return render(request, 'posts/feed.html', {'posts':posts})
 
-def list_post(request):
-    content = []
-    for post in posts:
-        content.append("""
-            <p><strong>{name}</strong></p>
-            <p><small>{user} - <i> {timestamp} </i> </small></p>  
-            <figure><img src="{picture}"/></figure>         
-    """.format(**post))
-
-    return HttpResponse('<br>'.join(content) )
+@login_required
+def create_post(request):
+    """Crear un post"""
+    
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+                        
+            return redirect('feed')
+    else:
+        form = PostForm()
+    
+    return render(
+        request =request,
+        template_name='posts/new.html',
+        context = {
+            'profile': request.user.profile,
+            'user': request.user,
+            'form': form
+        }
+    )
